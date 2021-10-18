@@ -3,29 +3,17 @@ import Nav from './components/Nav';
 import About from './components/About';
 import Portfolio from './components/Portfolio';
 import Contact from  './components/Contact';
+import Footer from './components/Footer';
 
 function App() {
   const [categories] = useState([
-    {
-      name: 'Portfolio',
-      description: `A compilation of personal and professionaly built websites`,
-    },
-    {
-      name: 'About Me',
-      description: `Information about me`,
-    },
-    {
-      name: 'Resume',
-      description: `A link to my resume with my qualifications`,
-    },
-    {
-      name: 'Contact Me',
-      description: `Fill out this form to contact me via email`,
-    },
+    { name: 'About Me', description: 'Short description about Marisa B' },
+    { name: 'Resume', description: 'My qualifications as an employee' },
+    { name: 'Portfolio', description: 'My personal and professional projects' },
+    { name: 'Contact', desription: 'Contact me with any questions/comments.'}
   ]);
 
   const [currentCategory, setCurrentCategory] = useState(categories[0]);
-  const [contactSelected, setContactSelected] = useState(false);
 
   return (
     <div>
@@ -33,18 +21,12 @@ function App() {
         categories={categories}
         setCurrentCategory={setCurrentCategory}
         currentCategory={currentCategory}
-        contactSelected={contactSelected}
-        setContactSelected={setContactSelected}
       ></Nav>
       <main>
-      {!contactSelected ? (
-          <>
-            <Portfolio currentCategory={currentCategory}></Portfolio>
-            <About currentCategory={currentCategory}></About>
-          </>
-        ) : (
-            <Contact currentCategory={currentCategory}></Contact>
-          )}
+        {currentCategory.name === "Portfolio" && <Portfolio currentCategory={currentCategory}></Portfolio>}
+        {currentCategory.name === "About Me" &&  <About currentCategory={currentCategory}></About> }
+        {currentCategory.name === "Contact" &&  <Contact currentCategory={currentCategory}></Contact>}
+        <Footer></Footer>
       </main>
     </div>
   );
