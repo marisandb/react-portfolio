@@ -1,4 +1,4 @@
-main {
+/* main {
 	margin: 0 auto;
 	max-width: 90%;
   padding: 50px 30px;
@@ -295,7 +295,3 @@ button {
 	margin-right: -2px;
 	
 } */
-
-.navActive {
-  color: var(--secondary);
-}

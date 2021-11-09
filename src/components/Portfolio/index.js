@@ -1,14 +1,16 @@
 import React from 'react';
 import Projects from '../Projects';
+import { Heading, Box } from "@chakra-ui/react"
 
-function Portfolio (props) {
-  const { currentCategory } = props;
+function Portfolio ({currentCategory}) {
+  const { name } = currentCategory;
   return (
+    <div>
     <section>
-      <h1 data-testid="h1tag">{currentCategory.name}</h1>
-      <p>{currentCategory.description}</p>
+      <Heading ml="10px" color="#264653"> My Work </Heading>
       <Projects category={currentCategory.name}/>
     </section>
+    </div>
   );
 }
 export default Portfolio;

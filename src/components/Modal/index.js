@@ -1,22 +1,20 @@
 import React from 'react';
+import { Heading, Image, Container, Link, UnorderedList, ListItem, CloseButton} from "@chakra-ui/react"
 
 const Modal = ({ onClose, currentPhoto }) => {
   const { name, description, deployed, github, index  } = currentPhoto;
 
   return (
-    <div className="modalBackdrop">
-      <div className="modalContainer">
-        <h3 className="modalTitle">{name} </h3>
-        <img src={require(`../../assets/Portfolio/${index}.png`)} alt="current category" />
-        <p>
-        {description}
-        <a href="/">{deployed}</a>
-        <a href="/">{github}</a>
-        </p>
-        <button type="button" onClick={onClose}>
-          Close
-        </button>
-      </div>
+    <div>
+      <Container backgroundColor="#264653">
+        <Heading color="#f4a261">{name}</Heading>
+        <UnorderedList color="#e9c46a">
+          <ListItem>{description} </ListItem>
+          <ListItem><Link href={deployed} isExternal> Deployed Link</Link></ListItem>
+          <ListItem><Link href={github} isExternal> GitHub Link</Link></ListItem>
+        </UnorderedList>
+        <CloseButton size="lg" onClick={onClose}/>
+      </Container>
     </div>
   );
 };

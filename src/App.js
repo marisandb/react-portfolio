@@ -5,33 +5,42 @@ import Portfolio from './components/Portfolio';
 import Contact from  './components/Contact';
 import Resume from './components/Resume';
 import Footer from './components/Footer';
+import { ChakraProvider } from "@chakra-ui/react"
 
 function App() {
   const [categories] = useState([
-    { name: 'About Me', description: 'Short description about Marisa B' },
-    { name: 'Resume', description: 'My qualifications as an employee' },
-    { name: 'Portfolio', description: 'My personal and professional projects' },
-    { name: 'Contact', desription: 'Contact me with any questions/comments.'}
+    {
+      name: `Portfolio`,
+    }
   ]);
-
   const [currentCategory, setCurrentCategory] = useState(categories[0]);
 
+  const [contactSelected, setContactSelected] = useState(false);
+
   return (
-    <div>
+    <ChakraProvider>
+     <div>
       <Nav
         categories={categories}
         setCurrentCategory={setCurrentCategory}
         currentCategory={currentCategory}
+        contactSelected={contactSelected}
+        setContactSelected={setContactSelected}
       ></Nav>
       <main>
-        {currentCategory.name === "Portfolio" && <Portfolio currentCategory={currentCategory}></Portfolio>}
-        {currentCategory.name === "About Me" &&  <About currentCategory={currentCategory}></About> }
-        {currentCategory.name === "Resume" &&  <Resume currentCategory={currentCategory}></Resume>}
-        {currentCategory.name === "Contact" &&  <Contact currentCategory={currentCategory}></Contact>}
-
-        <Footer></Footer>
+        {!contactSelected ? (
+          <>
+            <About />
+            <Portfolio currentCategory={currentCategory} />
+            <Resume />
+          </>
+        ) : (
+            <Contact />
+          )}
       </main>
     </div>
+        <Footer></Footer>
+    </ChakraProvider>
   );
 }
 
